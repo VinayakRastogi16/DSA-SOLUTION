@@ -28,11 +28,34 @@ void largestProduct(int *nums, int n){
 }
 
 
+int maxProduct(int *nums, int n){
+    int maxTillNow = nums[0];
+    int minTillNow = nums[0];
+    int ans = nums[0];
+
+    for (int i = 1; i < n; i++)
+    {
+        int curr = nums[i];
+
+        int tempMax = max(curr,max(maxTillNow*curr,minTillNow*curr));
+
+        minTillNow = min(curr,min(maxTillNow*curr,minTillNow*curr));
+
+        maxTillNow = tempMax;
+
+        ans = max(maxTillNow,ans);
+    }
+    
+    return ans;
+    
+}
+
+
 
 int main(){
     int nums[] = {2,3,-2,4};
     int n = sizeof(nums)/sizeof(int);
 
-    largestProduct(nums,n);
+    cout<<maxProduct(nums,n)<<endl;
     return 0;
 }

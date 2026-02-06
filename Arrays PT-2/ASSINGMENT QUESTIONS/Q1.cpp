@@ -1,4 +1,5 @@
 #include <iostream> 
+#include <algorithm>
 using namespace std;
 
 
@@ -21,13 +22,27 @@ int isRepeated(int *nums, int n){
     
 }
 
+bool isRepeated2(int *nums, int n){
+    sort(nums, nums+n);
+
+    for (int i = 1; i < n; i++)
+    {
+        if(nums[i]==nums[i-1]){
+            return true;
+        }
+
+    }
+    return false;
+    
+}
+
 
 int main(){
 
-    int nums[] = {1,4,5,3,4,67,8};
+    int nums[] = {2,5,1,4,7,9};
     int n = sizeof(nums)/sizeof(int);
 
-    cout<<isRepeated(nums, n )<<endl;
+    cout<<isRepeated2(nums, n )<<endl;
 
     return 0;
 
