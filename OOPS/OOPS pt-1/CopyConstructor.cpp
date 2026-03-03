@@ -27,6 +27,13 @@ class Car{
 
     ~Car(){
         cout<<"Deletin objects..\n";
+        if (mileage != NULL)
+        {
+            delete mileage;
+            mileage = NULL;
+        }
+        cout<<(*this).mileage<<endl;
+        
     }
 
 
