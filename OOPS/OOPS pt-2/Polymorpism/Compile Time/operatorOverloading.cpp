@@ -8,16 +8,18 @@ class A{
     int img;
 
 public:
-    A(int r=0, int i=0){
+    A(int r, int i){
         real = r;
         img = i;
     }
 
-    A operator +(A& original){
+    void operator +(A  &obj2){
         
-        int r = real + original.real;
-    int i = img + original.img;
-        return A(r,i);
+        int r = this->real + obj2.real;
+        int i = this->img + obj2.img;
+        A obj3(r,i);
+        cout<<"res = ";
+        obj3.display();
     }
     void display(){
         cout << real << "+" << img << "i\n";
@@ -28,8 +30,6 @@ public:
 int main(){
     A obj1(1,2);
     A obj2(3,4);
-    A obj3;
-    obj3 = obj1+obj2;
-    obj3.display();
+    obj1+obj2;
 }
 
