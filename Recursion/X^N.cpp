@@ -12,7 +12,7 @@ int powerOfN(int x,int n){ //homework
 
 }
 
-int pow(int x,int n){ //homework
+int pow(int x,int n){ // O(logn)
     if (n == 0)
     {
         return 1;
