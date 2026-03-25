@@ -27,7 +27,7 @@ void insertionSort(int *arr, int n){
 
         }
         
-        arr[prev+1] = curr;
+        // arr[prev+1] = curr;
     }
 
     print(arr, n);

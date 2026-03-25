@@ -14,7 +14,7 @@ int factorial(int n){ //recurssive func()
 
 
 int main(){
-    cout<<"4! = "<<factorial(4)<<endl;
+    cout<<"4! = "<<factorial(10)<<endl;
 
     return 0;
 }
