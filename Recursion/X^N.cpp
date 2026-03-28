@@ -1,4 +1,5 @@
 #include<iostream>
+#include<climits>
 using namespace std;
 
 int powerOfN(int x,int n){ //homework
@@ -12,28 +13,29 @@ int powerOfN(int x,int n){ //homework
 
 }
 
-int pow(int x,int n){ // O(logn)
-    if (n == 0)
-    {
-        return 1;
+double solve(double x, long long n) {
+    if (n == 0) return 1;
+
+    double half = solve(x, n / 2);
+
+    if (n % 2 == 0) return half * half;
+    return x * half * half;
+}
+
+double myPow(double x, int n) {
+    long long N = n;
+
+    if (N < 0) {
+        x = 1 / x;
+        N = -N;
     }
 
-    int halfPow = pow(x, n/2);
-    int halfPowSquare = halfPow * halfPow;
-
-    if(n%2 != 0){
-        //odd
-        return x*halfPowSquare;
-    }
-
-    return halfPowSquare;
-    
-
+    return solve(x, N);
 }
 
 int main(){
 
-    cout<<pow(2,5)<<endl;
+    cout<<myPow(1.21231,912309103)<<endl;
 
     return 0;
 }
