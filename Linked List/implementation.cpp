@@ -137,6 +137,58 @@ public:
         
         
     }
+
+    int search(int key){
+        Node* temp = head;
+
+        if (tail == head)
+        {
+            cout<<"LL is empty\n";
+            return -1;
+        }
+
+        int i = 0;
+        while (temp!=NULL)
+        {
+            if (temp->data==key)
+            {
+                return i;
+            }else{
+                temp= temp->next;
+                i++;
+            }
+            
+        }   
+        
+        return -1;
+
+    }
+
+    int helper(Node* h, int key){
+
+        if (h == NULL)
+        {
+            return -1;
+        }
+        
+
+        if(h->data == key){
+            return 0;
+        }
+
+        int idx = helper(h->next, key);
+        if (idx==-1)
+        {
+            return -1;
+        }
+
+        return idx+1;
+        
+    }
+
+    int searchRec(int key){
+        return helper(head, key);
+    }
 };
 
 
@@ -144,17 +196,20 @@ int main(){
 
     List ll;
 
+    ll.push_front(5);
+    ll.push_front(4);
     ll.push_front(3);
     ll.push_front(2);
     ll.push_front(1);
 
     ll.printList();
 
-    ll.pop_back();
+    // ll.pop_back();
+    // ll.printList();
+    // ll.pop_back();
+    // ll.printList();
+    // ll.pop_back();
 
-    ll.printList();
-    ll.pop_back();
-    ll.printList();
-    ll.pop_back();
+    cout<<ll.searchRec(4)<<endl;
     return 0;
 }
