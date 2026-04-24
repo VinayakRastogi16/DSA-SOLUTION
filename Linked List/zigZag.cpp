@@ -65,36 +65,6 @@ public:
 
 };
 
-Node* merge(Node* left, Node* right){
-    List ans;
-    Node* i = left;
-    Node* j= right;
-
-    while (i!=NULL && j!=NULL)
-    {
-        if(i->data <= j->data){
-            ans.push_back(i->data);
-            i = i->next;
-        }else{
-            ans.push_back(j->data);
-            j = j->next;
-        }
-    }
-
-    while(i!=NULL){
-        ans.push_back(i->data);
-        i = i->next;
-
-    }
-
-    while(j!=NULL){
-        ans.push_back(j->data);
-        j = j->next;
-    }
-    
-    return ans.head;
-}
-
 Node* splitAtMid(Node* head){
     Node* slow = head;
     Node* fast = head;
@@ -114,18 +84,6 @@ Node* splitAtMid(Node* head){
     
 }
 
-Node* mergeSort(Node* head){
-
-    if(head == NULL || head->next == NULL){
-        return head;
-    }
-
-    Node* rightHead = splitAtMid(head);
-    Node* left = mergeSort(head);
-    Node* right = mergeSort(rightHead);
-    return merge(left, right);
-}
-
 void printList(Node* head)
     {
 
@@ -139,23 +97,66 @@ void printList(Node* head)
         cout << "NULL" << endl;
 }
 
+Node* reverse(Node* head){
+    Node* prev = NULL;
+    Node* curr = head;
+    Node* next = NULL;
+
+    while(curr != NULL){
+        next = curr->next;
+        curr->next = prev;
+
+        prev = curr;
+        curr = next;
+    }
+
+    return prev;
+
+}
+
+Node* zigZag(Node* head){
+    
+    Node* rightHead = splitAtMid(head);
+    Node* rightHeadRev = reverse(rightHead);
+
+    Node* left = head;
+    Node* right = rightHeadRev;
+    Node* tail = right;
+
+    while(left !=NULL && right !=NULL){
+        Node* nextLeft = left->next;
+        Node* nextRight = right->next;
+
+        left->next = right;
+        right->next = nextLeft;
+        tail = right;
+
+        left = nextLeft;
+        right = nextRight;
+
+    }
+
+    if(right!=NULL){
+    tail->next = right;
+    }
+
+    return head;
+}
+
 int main(){
+
     List ll;
 
-    ll.push_front(2);
-    ll.push_front(3);
-    ll.push_front(8);
-    ll.push_front(6);
-    ll.push_front(28);
-    ll.push_front(22);
-    // ll.push_front(9);
+    ll.push_back(1);
+    ll.push_back(2);
+    ll.push_back(3);
+    ll.push_back(4);
+    ll.push_back(5);
+    printList(ll.head);
+
+    ll.head = zigZag(ll.head);
 
     printList(ll.head);
 
-    ll.head = mergeSort(ll.head);
-
-    printList(ll.head);
-    
     return 0;
-
 }
