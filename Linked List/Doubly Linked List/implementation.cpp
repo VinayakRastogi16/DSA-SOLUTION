@@ -66,11 +66,12 @@ int main(){
     dbll.push_front(2);
     dbll.push_front(1);
     dbll.printList();
+    dbll.pop_front();
+    dbll.pop_front();
+    dbll.pop_front();
+    dbll.printList();
+    dbll.pop_front();
 
-    dbll.pop_front();
-    dbll.pop_front();
-    dbll.pop_front();
-    dbll.pop_front();
     dbll.printList();
     return 0;
 }
