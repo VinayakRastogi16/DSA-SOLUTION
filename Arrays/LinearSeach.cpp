@@ -19,8 +19,6 @@ int LinearSearch(int arr[], int key, int n){
 int main(){
 
      int n;
-     
-     
 
      cout<<"Enter the size of array";
      cin>> n ;
