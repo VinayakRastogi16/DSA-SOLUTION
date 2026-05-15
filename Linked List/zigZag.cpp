@@ -94,7 +94,6 @@ void printList(Node* head)
         }
         cout << "NULL" << endl;
 }
-
 Node* reverse(Node* head){
     Node* prev = NULL;
     Node* curr = head;
@@ -111,7 +110,6 @@ Node* reverse(Node* head){
     return prev;
 
 }
-
 Node* zigZag(Node* head){
     
     Node* rightHead = splitAtMid(head);
@@ -131,7 +129,6 @@ Node* zigZag(Node* head){
 
         left = nextLeft;
         right = nextRight;
-
     }
 
     if(right!=NULL){
