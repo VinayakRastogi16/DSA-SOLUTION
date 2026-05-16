@@ -122,11 +122,9 @@ Node* zigZag(Node* head){
     while(left !=NULL && right !=NULL){
         Node* nextLeft = left->next;
         Node* nextRight = right->next;
-
         left->next = right;
         right->next = nextLeft;
         tail = right;
-
         left = nextLeft;
         right = nextRight;
     }
