@@ -128,17 +128,13 @@ Node* zigZag(Node* head){
         left = nextLeft;
         right = nextRight;
     }
-
     if(right!=NULL){
     tail->next = right;
     }
-
     return head;
 }
 int main(){
-
     List ll;
-
     ll.push_back(1);
     ll.push_back(2);
     ll.push_back(3);
