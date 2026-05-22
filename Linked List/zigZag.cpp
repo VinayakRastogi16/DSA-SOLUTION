@@ -1,105 +1,116 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-class Node{
+class Node
+{
 public:
     int data;
-    Node* next;
+    Node *next;
 
-    Node(int val){
+    Node(int val)
+    {
         data = val;
         next = NULL;
     }
-
 };
 
-class List{
+class List
+{
 public:
-    Node* head;
-    Node* tail;
+    Node *head;
+    Node *tail;
 
-    List(){
+    List()
+    {
         head = NULL;
         tail = NULL;
     }
 
-    void push_front(int val){
+    void push_front(int val)
+    {
         Node *newNode = new Node(val);
 
-        if(head == NULL){
+        if (head == NULL)
+        {
             head = tail = newNode;
-
-        }else{
+        }
+        else
+        {
             newNode->next = head;
             head = newNode;
         }
     }
 
-    void push_back(int val){
+    void push_back(int val)
+    {
         Node *newNode = new Node(val);
 
-        if(head == NULL){
+        if (head == NULL)
+        {
             head = tail = newNode;
-
-        }else{
+        }
+        else
+        {
             tail->next = newNode;
             tail = newNode;
         }
     }
 
-    void pop_front(){
-        if(head==NULL){
-            cout<<"LL is empty\n";
+    void pop_front()
+    {
+        if (head == NULL)
+        {
+            cout << "LL is empty\n";
             return;
-
         }
 
-        Node* temp = head;
+        Node *temp = head;
         head = head->next;
 
         temp->next = NULL;
         delete temp;
     }
-
-
-
 };
 
-Node* splitAtMid(Node* head){
-    Node* slow = head;
-    Node* fast = head;
-    Node* prev;
-    while(fast!=NULL && fast->next!=NULL){
+Node *splitAtMid(Node *head)
+{
+    Node *slow = head;
+    Node *fast = head;
+    Node *prev;
+    while (fast != NULL && fast->next != NULL)
+    {
         prev = slow;
         slow = slow->next;
         fast = fast->next->next;
     }
 
-    if(prev != NULL){
+    if (prev != NULL)
+    {
         prev->next = NULL;
-    
     }
 
     return slow;
-    
 }
 
-void printList(Node* head)
+void printList(Node *head)
+{
+    Node *temp = head;
+    while (temp != NULL)
     {
-        Node *temp = head;
-        while (temp != NULL)
-        {
-            cout << temp->data << " -> ";
-            temp = temp->next;
-        }
-        cout << "NULL" << endl;
+        cout << temp->data << " -> ";
+        temp = temp->next;
+    }
+    cout << "NULL" << endl;
 }
-Node* reverse(Node* head){
-    Node* prev = NULL;
-    Node* curr = head;
-    Node* next = NULL;
+Node *reverse(Node *head)
+{
+    Node *prev = NULL;
+    Node *curr = head;
+    Node *next = NULL;
 
-    while(curr != NULL){
+    while (curr != NULL)
+    {
+
         next = curr->next;
         curr->next = prev;
 
@@ -108,35 +119,43 @@ Node* reverse(Node* head){
     }
 
     return prev;
-
 }
-Node* zigZag(Node* head){
-    
-    Node* rightHead = splitAtMid(head);
-    Node* rightHeadRev = reverse(rightHead);
+Node *zigZag(Node *head)
+{
 
-    Node* left = head;
-    Node* right = rightHeadRev;
-    Node* tail = right;
+    Node *rightHead = splitAtMid(head);
 
-    while(left !=NULL && right !=NULL){
-        Node* nextLeft = left->next;
-        Node* nextRight = right->next;
+    Node *rightHeadRev = reverse(rightHead);
+
+    Node *left = head;
+
+    Node *right = rightHeadRev;
+
+    Node *tail = right;
+
+    while (left != NULL && right != NULL)
+    {
+        Node *nextLeft = left->next;
+        Node *nextRight = right->next;
+
         left->next = right;
         right->next = nextLeft;
+
         tail = right;
         left = nextLeft;
         right = nextRight;
     }
-    if(right!=NULL){
-    tail->next = right;
+    if (right != NULL)
+    {
+        tail->next = right;
     }
     return head;
 }
-int main(){
+int main()
+{
     List ll;
     ll.push_back(1);
-    
+
     ll.push_back(2);
 
     ll.push_back(3);
