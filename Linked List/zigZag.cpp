@@ -102,6 +102,7 @@ void printList(Node *head)
     }
     cout << "NULL" << endl;
 }
+
 Node *reverse(Node *head)
 {
     Node *prev = NULL;
@@ -120,6 +121,7 @@ Node *reverse(Node *head)
 
     return prev;
 }
+
 Node *zigZag(Node *head)
 {
 
