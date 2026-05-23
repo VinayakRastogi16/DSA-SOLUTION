@@ -162,6 +162,46 @@ Node* intersection(Node* h1, Node* h2){
     return i;
 }
 
+Node* deleteM(Node* head, int n, int m){
+
+    if( head == NULL){
+        return NULL;
+    }
+
+    if(n==0){
+        return head;
+    }
+
+    Node *p1 = head;
+
+    while(p1 != NULL){
+        for (int i = 1; i < m && p1 != NULL; i++)
+        {
+            p1 = p1->next;
+        }
+
+        if(p1==NULL){
+            break;
+        }
+
+        Node* temp = p1->next;
+
+        for (int i = 0; i < n && temp != NULL; i++)
+        {
+            Node* p2 = temp->next;
+            delete temp;
+            temp = p2;
+        }
+
+        p1->next = temp;
+
+        p1 = temp;
+
+    }
+
+    return head;
+}
+
 int main(){
 
     List ll;
@@ -169,25 +209,25 @@ int main(){
     ll.push_back(1);
     ll.push_back(2);
     ll.push_back(3);
+    ll.push_back(4);
+    ll.push_back(5);
     ll.push_back(6);
     ll.push_back(7);
+    ll.push_back(8);
+    ll.push_back(9);
+    ll.push_back(10);
 
-    List ll2;
+    ll.head = deleteM(ll.head, 2, 3);
 
-    ll2.push_back(4);
-    ll2.push_back(5);
+    ll.printList();
 
-    ll2.tail->next = ll.head->next->next->next;
-
-    Node* inter = intersection(ll.head, ll2.head);
-
-    if(inter != NULL)
-        cout << "Intersection at node: " << inter->data << endl;
-    else
-        cout << "No intersection" << endl;
-
-
-    cout<<inter<<endl;
+    // ll2.tail->next = ll.head->next->next->next;
+    // Node* inter = intersection(ll.head, ll2.head);
+    // if(inter != NULL)
+    //     cout << "Intersection at node: " << inter->data << endl;
+    // else
+    //     cout << "No intersection" << endl;
+    // cout<<inter<<endl;
 
     return 0;
 
