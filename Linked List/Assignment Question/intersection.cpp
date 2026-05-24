@@ -1,4 +1,4 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
 class Node
@@ -13,14 +13,12 @@ public:
         data = val;
         next = NULL;
     }
-
 };
 
 class List
 {
-    
-public:
 
+public:
     Node *head;
     Node *tail;
 
@@ -131,64 +129,70 @@ public:
         delete tail;
         tail = temp;
     }
-
-
-
 };
 
-Node* intersection(Node* h1, Node* h2){
-    Node* i = h1;
-    Node* j = h2;
+Node *intersection(Node *h1, Node *h2)
+{
+    Node *i = h1;
+    Node *j = h2;
 
-    while(i!=j){
-        
+    while (i != j)
+    {
+
         if (i == NULL)
         {
             i = h2;
-        }else{
+        }
+        else
+        {
             i = i->next;
         }
 
-        if (j==NULL)
+        if (j == NULL)
         {
             j = h1;
-        }else{
+        }
+        else
+        {
             j = j->next;
         }
-        
-        
     }
 
     return i;
 }
 
-Node* deleteM(Node* head, int n, int m){
+Node *deleteM(Node *head, int n, int m)
+{
 
-    if( head == NULL){
+    if (head == NULL)
+    {
         return NULL;
     }
 
-    if(n==0){
+    if (n == 0)
+    {
         return head;
     }
 
     Node *p1 = head;
 
-    while(p1 != NULL){
+    while (p1 != NULL)
+    {
         for (int i = 1; i < m && p1 != NULL; i++)
         {
             p1 = p1->next;
         }
 
-        if(p1==NULL){
+        if (p1 == NULL)
+        {
             break;
         }
 
-        Node* temp = p1->next;
+        Node *temp = p1->next;
 
         for (int i = 0; i < n && temp != NULL; i++)
         {
-            Node* p2 = temp->next;
+            Node *p2 = temp->next;
             delete temp;
             temp = p2;
         }
@@ -196,13 +200,62 @@ Node* deleteM(Node* head, int n, int m){
         p1->next = temp;
 
         p1 = temp;
-
     }
 
     return head;
 }
 
-int main(){
+Node *swapNode(Node *head, int x, int y)
+{
+    if (x == y)
+    {
+        return head;
+    }
+
+    Node *prevX = NULL;
+    Node *X = head;
+
+    while (X != NULL && X->data != x)
+    {
+        prevX = X;
+        X = X->next;
+    }
+
+    Node *prevY = NULL;
+    Node *Y = head;
+
+    while (Y != NULL && Y->data != y)
+    {
+        prevY = Y;
+        Y = Y->next;
+    }
+
+    if (X == NULL || Y == NULL){
+        cout<<"Can't find nodes to be swapped\n";
+        return head;
+    }
+
+    if(prevX != NULL){
+        prevX->next = Y;
+    }else{
+        head = Y;
+    }
+
+    if(prevY != NULL){
+        prevY->next = X;
+    }else{
+        head = X;
+    }
+
+    Node* temp = X->next;
+    X->next = Y->next;
+    Y->next = temp;
+
+    return head;
+}
+
+int main()
+{
 
     List ll;
 
@@ -210,14 +263,12 @@ int main(){
     ll.push_back(2);
     ll.push_back(3);
     ll.push_back(4);
-    ll.push_back(5);
-    ll.push_back(6);
-    ll.push_back(7);
-    ll.push_back(8);
-    ll.push_back(9);
-    ll.push_back(10);
 
-    ll.head = deleteM(ll.head, 2, 3);
+    // ll.head = deleteM(ll.head, 2, 3);
+
+    ll.printList();
+
+    ll.head = swapNode(ll.head, 1, 3);
 
     ll.printList();
 
@@ -230,5 +281,4 @@ int main(){
     // cout<<inter<<endl;
 
     return 0;
-
 }
