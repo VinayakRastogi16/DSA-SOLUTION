@@ -256,9 +256,7 @@ Node *swapNode(Node *head, int x, int y)
 
 int main()
 {
-
     List ll;
-
     ll.push_back(1);
     ll.push_back(2);
     ll.push_back(3);
@@ -278,6 +276,7 @@ int main()
     //     cout << "Intersection at node: " << inter->data << endl;
     // else
     //     cout << "No intersection" << endl;
+    
     // cout<<inter<<endl;
 
     return 0;
