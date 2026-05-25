@@ -131,6 +131,7 @@ public:
     }
 };
 
+// Q1
 Node *intersection(Node *h1, Node *h2)
 {
     Node *i = h1;
@@ -161,6 +162,7 @@ Node *intersection(Node *h1, Node *h2)
     return i;
 }
 
+// Q2
 Node *deleteM(Node *head, int n, int m)
 {
 
@@ -205,6 +207,7 @@ Node *deleteM(Node *head, int n, int m)
     return head;
 }
 
+// Q3
 Node *swapNode(Node *head, int x, int y)
 {
     if (x == y)
@@ -254,19 +257,82 @@ Node *swapNode(Node *head, int x, int y)
     return head;
 }
 
+// Q4
+
+Node *evenOddList(Node* head){
+
+    if(head == NULL || head->next == NULL){
+        return head;
+    }
+
+    Node* evenhead = NULL;
+    Node* eventail = NULL;
+
+    Node* oddhead = NULL;
+    Node* oddtail = NULL;
+
+    Node* p1 = head;
+    
+    while(p1 != NULL){
+
+        if(p1->data%2 == 0){
+            if(evenhead == NULL){
+                evenhead = p1;
+                eventail = p1;
+            }else{
+                eventail->next = p1;
+                eventail = eventail->next;
+            }
+        }else{
+            if(oddhead == NULL){
+                oddhead = p1;
+                oddtail = p1;
+            }else{
+                oddtail->next = p1;
+                oddtail = oddtail->next;
+            }
+
+        }
+
+        p1 = p1->next;
+
+
+    }
+
+    if(evenhead == NULL){
+        oddtail->next = NULL;
+        return oddhead;
+    }
+
+    if(oddhead == NULL){
+        evenhead->next = NULL;
+        return evenhead;
+    }
+
+    eventail->next = oddhead;
+    oddtail->next = NULL;
+
+    return evenhead;
+
+
+}
+
 int main()
 {
     List ll;
-    ll.push_back(1);
-    ll.push_back(2);
-    ll.push_back(3);
+    ll.push_back(8);
+    ll.push_back(10);
+    ll.push_back(12);
+    ll.push_back(5);
     ll.push_back(4);
+    ll.push_back(1);
+    ll.push_back(6);
 
     // ll.head = deleteM(ll.head, 2, 3);
 
     ll.printList();
 
-    ll.head = swapNode(ll.head, 1, 3);
+    ll.head = evenOddList(ll.head);
 
     ll.printList();
 
