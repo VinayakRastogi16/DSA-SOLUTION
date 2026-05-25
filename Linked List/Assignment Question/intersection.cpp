@@ -258,7 +258,6 @@ Node *swapNode(Node *head, int x, int y)
 }
 
 // Q4
-
 Node *evenOddList(Node* head){
 
     if(head == NULL || head->next == NULL){
