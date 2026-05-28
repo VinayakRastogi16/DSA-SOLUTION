@@ -32,7 +32,6 @@ class Stack{
         bool isEmpty(){
             return vec.size() == 0; 
         }
-
 };
 
 int main(){
@@ -46,7 +45,5 @@ int main(){
         cout<<s.top()<<" \n";
         s.pop();
     }
-
-
     return 0;
 }
