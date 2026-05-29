@@ -1,13 +1,15 @@
 #include<iostream>
 #include<vector>
-
+#include<string>
 using namespace std;
+
+template<class T>
 
 class Stack{
     public:
-        vector<int> vec;
+        vector<T> vec;
 
-        void push(int val){ //O(1)
+        void push(T val){ //O(1)
             vec.push_back(val);
         }
 
@@ -19,12 +21,11 @@ class Stack{
             vec.pop_back();
         }
 
-        int top(){
-
-            if(isEmpty()){
-                cout<<"Stack is empty.\n";
-                return -1;
-            }
+        T top(){
+            // if(isEmpty()){
+            //     cout<<"Stack is empty.\n";
+            //     return -1;
+            // }
             int lastIdx = vec.size()-1;
             return vec[lastIdx];
         }
@@ -35,15 +36,17 @@ class Stack{
 };
 
 int main(){
-    Stack s;
+
+    Stack<string> s;
     
-    s.push(3);
-    s.push(2);
-    s.push(1);
+    s.push("Hi");
+    s.push("Hi");
+    s.push("Hi Hello");
 
     while(!s.isEmpty()){
         cout<<s.top()<<" \n";
         s.pop();
     }
     return 0;
+
 }
