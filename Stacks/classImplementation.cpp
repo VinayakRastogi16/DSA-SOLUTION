@@ -8,11 +8,9 @@ template<class T>
 class Stack{
     public:
         vector<T> vec;
-
         void push(T val){ //O(1)
             vec.push_back(val);
         }
-
         void pop(){
             if(isEmpty()){
                 cout<<"Stack is empty.\n";
@@ -20,7 +18,6 @@ class Stack{
             }
             vec.pop_back();
         }
-
         T top(){
             // if(isEmpty()){
             //     cout<<"Stack is empty.\n";
@@ -29,7 +26,6 @@ class Stack{
             int lastIdx = vec.size()-1;
             return vec[lastIdx];
         }
-
         bool isEmpty(){
             return vec.size() == 0; 
         }
