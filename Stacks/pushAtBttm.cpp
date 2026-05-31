@@ -35,15 +35,37 @@ string reverseString(string str){
     
 }
 
+void reverse(stack<int> &s){
+
+    if(s.empty()){
+        return;
+    }
+
+    int temp = s.top();
+    s.pop();
+    reverse(s);
+    pushAtBttm(s, temp);
+}
+
+void print(stack<int> s){
+    while (!s.empty()){
+        cout<<s.top()<<" ";
+        s.pop();
+    }
+
+    cout<<endl;
+    
+    
+}
+
 int main(){
 
-    // stack<int> s;
-    // s.push(3);
-    // s.push(2);
-    // s.push(1);
+    stack<int> s;
+    s.push(3);
+    s.push(2);
+    s.push(1);
 
     // pushAtBttm(s, 4);
-
     // while (!s.empty())
     // {
     //     cout<<s.top()<<" ";
@@ -51,8 +73,14 @@ int main(){
     // }
     // cout<<endl;
 
-    string str = "abcd";
-    cout<<"Reverse = "<<reverseString(str)<<endl;
+    // string str = "abcd";
+    // cout<<"Reverse = "<<reverseString(str)<<endl;
     
+    print(s);
+
+    reverse(s);
+
+    print(s);
+
     return 0;
 }
