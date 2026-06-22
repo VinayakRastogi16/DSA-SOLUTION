@@ -41,7 +41,7 @@ void transpose(int arr[][4], int n, int m){
 
 int main(){
     int arr[4][4] = {{4,7,7,9}, {8,2,8,7},{3,4,2,1},{4,2,12,3}};
-
+    print(arr, 4, 4);
     transpose(arr, 4,4);
     return 0;
 }

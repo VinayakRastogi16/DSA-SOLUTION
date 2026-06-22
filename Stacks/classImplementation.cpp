@@ -31,18 +31,45 @@ class Stack{
         }
 };
 
-int main(){
+void popAfterHash(string str){
+    Stack<char> s;
+    Stack<char> t;
 
-    Stack<string> s;
-    
-    s.push("Hi");
-    s.push("Hi");
-    s.push("Hi Hello");
+    for(char ch:str){
+        if(ch == '#'){
+            if(!s.isEmpty()){
+                char deleted = s.top();
+                s.pop();
+                t.push(deleted);
+            }
+        }else if(ch == '+'){
+           if(!t.isEmpty()){
+             s.push(t.top());
+            t.pop();
+           }
+            
+        }else{
+            s.push(ch);
+        }
+    }
+    string result;
 
-    while(!s.isEmpty()){
-        cout<<s.top()<<" \n";
+    while (!s.isEmpty()) {
+        result = s.top() + result;
         s.pop();
     }
+
+    cout << "Result: " << result << endl;
+
+}
+
+int main(){
+    
+    string i;
+    cout<<"Enter String\n";
+    cin>>i;
+
+    popAfterHash(i);
     return 0;
 
 }
