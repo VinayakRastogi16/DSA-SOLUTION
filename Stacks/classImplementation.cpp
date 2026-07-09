@@ -31,38 +31,6 @@ class Stack{
         }
 };
 
-void popAfterHash(string str){
-    Stack<char> s;
-    Stack<char> t;
-
-    for(char ch:str){
-        if(ch == '#'){
-            if(!s.isEmpty()){
-                char deleted = s.top();
-                s.pop();
-                t.push(deleted);
-            }
-        }else if(ch == '+'){
-           if(!t.isEmpty()){
-             s.push(t.top());
-            t.pop();
-           }
-            
-        }else{
-            s.push(ch);
-        }
-    }
-    string result;
-
-    while (!s.isEmpty()) {
-        result = s.top() + result;
-        s.pop();
-    }
-
-    cout << "Result: " << result << endl;
-
-}
-
 int main(){
     
     string i;
