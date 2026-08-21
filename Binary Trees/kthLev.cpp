@@ -1,6 +1,7 @@
 #include<iostream>
 #include<algorithm>
 #include<vector>
+#include<map>
 #include<queue>
 using namespace std;
 
@@ -15,7 +16,6 @@ public:
         left = right = NULL;
     }
 };
-
 
 static int i = -1;
 
@@ -32,45 +32,31 @@ Node* buildTree(vector<int>& nodes){
     return currNode;
 }
 
+void kthHelper(Node* root, int k, int currLev){
 
-void levelOrder(Node* root){
-
-    if(root == NULL)return;
-
-    queue<Node*> q;
-    q.push(root);
-    q.push(NULL);
-
-    while(!q.empty()){
-        Node* curr = q.front();
-        q.pop();
-
-        if(curr == NULL){
-            cout<<endl;
-            if(q.empty()){
-                break;
-            }
-            q.push(NULL);
-        }else{
-            cout<<curr->data<<" ";
-            if(curr->left){
-                q.push(curr->left);
-            }
-            if(curr->right){
-                q.push(curr->right);
-            }
-        }
-
-        
+    if(!root){
+        return;
     }
 
+
+    if(currLev == k){
+        cout<<root->data<<" ";
+        return;
+    }
+
+    kthHelper(root->left, k, currLev+1);
+    kthHelper(root->right, k, currLev+1);
+}
+
+void kthLevel(Node* root, int k){
+    kthHelper(root, k, 1);
+    cout<<endl;
 }
 
 int main(){
     vector<int> nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
     Node* root = buildTree(nodes);
 
-    levelOrder(root);
-    cout<<endl;
+    kthLevel(root, 3);
     return 0;
 }
