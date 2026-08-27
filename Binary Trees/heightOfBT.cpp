@@ -87,7 +87,6 @@ pair<int, int> diam2(Node* root){
 
 }
 
-
 static int i = -1;
 
 Node* buildTree(vector<int>& nodes){
