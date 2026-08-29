@@ -103,16 +103,53 @@ Node* delNode(Node* root, int val){
     return root;
 }
 
+void printRange(Node* root, int st, int end){
 
+    if(!root) return;
+
+    if(root->data>=st && root->data<=end){
+        
+        printRange(root->left, st, end);
+        cout<<root->data<<" ";
+        printRange(root->right, st, end);
+    }else if(root->data<st){
+        printRange(root->right, st, end);
+    }
+    if(root->data>end){
+        printRange(root->left, st, end);
+    }
+}
+
+void out(vector<int>& path){
+    for(int i = 0; i< path.size(); i++)
+        cout<<path[i]<<" ";
+
+    return;
+}
+
+void printPath(vector<int>& path, Node* root){
+    if(!root){
+        return;
+    }
+    path.push_back(root->data);
+    if(!root->left&&!root->right){
+        out(path);
+        cout<<endl;
+        path.pop_back();
+        return;
+    }
+    printPath(path,root->left);
+    printPath(path,root->right);
+
+    path.pop_back();
+}
 
 int main(){
 
-    vector<int> arr = {5,1,3,4,2,6,22,8,14,9,7};
+    vector<int> arr = {5,1,3,4,2,6,11,8,10,14};
+    vector<int> path;
     Node* root = buildBST(arr,arr.size());
-    inOrder(root);
-    cout<<"\n";
-    delNode(root, 7);
-    inOrder(root);
+    printPath(path,root);
     cout<<endl;
 
     return 0;
